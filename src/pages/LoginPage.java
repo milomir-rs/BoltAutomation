@@ -13,6 +13,7 @@ public class LoginPage {
     private By passwordField = By.id("password");
     private By loginButton = By.name("submit");
     private By alertMessage = By.className("alert-danger");
+    private String dummyEmail = "something@google.com";
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -21,6 +22,10 @@ public class LoginPage {
 
     public void enterEmail(String email) {
         driver.findElement(emailField).sendKeys(email);
+    }
+
+    public void enterDummyEmail() {
+        driver.findElement(emailField).sendKeys(dummyEmail);
     }
 
     public void enterPassword(String password) {

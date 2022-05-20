@@ -1,50 +1,26 @@
 package test;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.time.Duration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import pages.DashboardPage;
-import pages.HomePage;
 import pages.LoginPage;
 
-public class LoginTests {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+public class LoginTests extends BaseTest {
     private static LoginPage loginPage;
 
-    @BeforeClass
-    public static void setUpClass() {
-        System.setProperty("webdriver.chrome.driver", "/home/milomir/Desktop/workspace/chromedriver");
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofMillis(1000));
-        driver.manage().window().maximize();
-
-        driver.get("https://staging.boltqr.com/");
-        HomePage homePage = new HomePage(driver);
+    @Before
+    public void setUp() {
         homePage.clickOnSignInLink();
         loginPage = new LoginPage(driver, wait);
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-        driver.quit();
-    }
-
-    @Before
-    public void setUp() {
-        
+    @After
+    public void tearDown() {
+        driver.get("https://staging.boltqr.com/");
     }
 
     @Test
